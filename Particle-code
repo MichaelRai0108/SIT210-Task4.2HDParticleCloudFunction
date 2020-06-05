@@ -1,0 +1,58 @@
+int led1 = A3;
+int led2 = A4;
+int led3 = A5;
+
+
+
+int ledToggle(String value) {
+
+    if (value=="red") {
+        digitalWrite(led1,HIGH);
+        digitalWrite(led2,LOW);
+        digitalWrite(led3,LOW);
+        Particle.function("LED",ledToggle);
+        return 1;
+    }
+    if (value=="yellow") {
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,HIGH);
+        digitalWrite(led3,LOW);
+        Particle.function("LED",ledToggle);
+        return 1;
+    }
+    if (value=="green") {
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,LOW);
+        digitalWrite(led3,HIGH);
+        Particle.function("LED",ledToggle);
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
+
+
+
+void setup()
+{
+
+   // Here's the pin configuration, same as last time
+    pinMode(led1, OUTPUT);
+    pinMode(led2, OUTPUT);
+    pinMode(led3, OUTPUT);
+
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, LOW);
+    digitalWrite(led3, LOW);  
+
+   Particle.function("LED",ledToggle);
+}
+
+
+
+void loop()
+{
+
+  
+}
